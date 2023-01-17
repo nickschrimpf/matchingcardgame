@@ -1,0 +1,113 @@
+:root{
+    background-color: lightseagreen;
+    padding: 0;
+    margin:0;
+
+}
+body{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+}
+.board{
+    width: 80vw;
+    height: 80vh;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    perspective: 1000px;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    width: calc(25% - 10px);
+    height: calc(33% - 10px);
+    margin: 5px;
+    position: relative;
+    background-color: whitesmoke;
+    transform-style: preserve-3d;
+    box-shadow: 1px 0px 4px rgba(0, 0, 0, 0.35);
+    transform: scale(1);
+    transition: transform .5s;
+    border-radius: 5px;
+}
+
+.card:nth-child(1),
+.card:nth-child(5),
+.card:nth-child(9){
+    background-color: aqua;
+}
+.card:nth-child(2),
+.card:nth-child(6),
+.card:nth-child(10){
+    /* animation-duration: 2s; */
+    background-color: blue;
+}
+.card:nth-child(3),
+.card:nth-child(7),
+.card:nth-child(11){
+    /* animation-duration: 2.25s; */
+    background-color: red;
+}
+.card:nth-child(4),
+.card:nth-child(8),
+.card:nth-child(12){
+    /* animation-duration: 2.50s; */
+    background-color: green;
+}
+
+.card:active{
+    transform: scale(.97);
+    transition: transfrom .2s;
+}
+.card.flip{
+    transform: rotateY(180deg);
+}
+
+.back-face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 5px;
+}
+
+.front-face{
+    transform: rotateY(180deg);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+} 
+
+@keyframes leftSide {
+    0%{
+        position: absolute;
+        transform: rotate(180deg);
+    }
+    50%{
+        transform: translateX(75px);
+        transform: rotate(180deg);
+        
+    }
+    100%{
+        position: relative;
+        transform: rotate(0);
+        transform: translateX(0);
+       
+    }
+}
+
+
+@keyframes slidein {
+    0%{
+        position: absolute;
+    }
+  
+    50% {
+        
+    }
+    100%{
+        position: relative;
+    }
+
+  }
