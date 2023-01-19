@@ -18,9 +18,6 @@ function shuffle() {
     cards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 11);
         if(taken.includes(randomPos)){
-            console.log(taken)
-            console.log(randomPos)
-            
             do{
                 if(randomPos <= 10){
                     randomPos++
@@ -29,29 +26,35 @@ function shuffle() {
                 }
             }while(taken.includes(randomPos));
             card.style.order = randomPos;
-            taken.push(randomPos)
-            console.log(`new pos ${randomPos}`)
-            console.log(taken)
         }
         if(!taken.includes(randomPos)){
             card.style.order = randomPos;
             taken.push(randomPos)
         };
+        if(randomPos === 0 || randomPos === 4 || randomPos === 8 ){
+            card.style.animationDuration = '2s';
+        }else if(randomPos === 1 || randomPos === 5|| randomPos === 9){
+            card.style.animationDuration = '4s';
+        }else{
+            card.style.animationDuration = '6s';
+        }
+        // APPLY ANIMATION BASIED ON LOCATION LEFT SIDE 0,4,8 LEFT MIDDLE 1,5,9 RIGHT MIDDLE 2,6,10 RIGHT SIDE 3,7,11
     });
 };
 
 function cardClickHandler(){
     if(preventSelection){
         return;
-    };
-    this.classList.add('flip');
-    if(!firstSelection){
-        firstSelection = this;
-    }else {
-        secondSelection = this;
-        preventSelection = true;
-        secondSelection.classList.add('flip');
-        checkForMatch();
+    }else{
+        this.classList.add('flip');
+        if(!firstSelection){
+            firstSelection = this;
+        }else {
+            secondSelection = this;
+            preventSelection = true;
+            secondSelection.classList.add('flip');
+            checkForMatch();
+        };
     };
 };
 
