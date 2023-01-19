@@ -1,12 +1,33 @@
 :root{
     background-color: lightseagreen;
-    padding: 0;
-    margin:0;
-
 }
 body{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding:0px;
     display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+.actionPanel{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 150px;
+    padding:20px;
+}
+.actionPanel button{
+    border:none;
+    text-decoration: none;
+    height: 45px;
+    max-width: 125px;
+    background-color: white;
+    color:rgb(12, 72, 69);
+    border-radius: 99px;
+    box-shadow: 4px 4px 4px rgba(11, 62, 59, 0.35);
+    padding: 10px;
 }
 .board{
     width: 90vw;
@@ -16,6 +37,7 @@ body{
     flex-wrap: wrap;
     perspective: 1000px;
     justify-content: center;
+    overflow:hidden;
 }
 .card{
     width: calc(25% - 10px);
@@ -34,6 +56,7 @@ body{
     animation-timing-function: ease-in;
     animation-delay: 0;
     animation-direction: alternate;
+    opacity: 0;
 }
 .card:active{
     transform: scale(.97);
@@ -60,16 +83,17 @@ body{
 @keyframes flyin {
     0%{
         position: absolute;
-        margin-top: 150vh;
+        margin-top: 100vh;
         transform: rotate(180deg);
+        overflow: hidden;
     }
     50%{
         
-        transform: rotate(180deg);
+        transform: rotate(380deg);
         
     }
     80%{
-        margin-top: -45px;
+        transform: rotate(780deg);
     }
     100%{
         position: relative;

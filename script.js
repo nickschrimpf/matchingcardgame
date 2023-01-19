@@ -1,26 +1,55 @@
 let cards = document.querySelectorAll('div.card');
+const startGameBtn = document.getElementById('startGameBtn')
 const board = document.getElementById('board');
+
+
 let firstSelection
 let secondSelection
 let preventSelection = false;
 let pairsFound = 0;
+let gameStarted = false;
+let gameTimer
 
-cards.forEach(card => {
-    let dupCard = card.cloneNode(true)
-    board.appendChild(dupCard)
-    cards = document.querySelectorAll('div.card')
-});
+const startGame = () => {
+    if(gameStarted){
+        console.log(gameStarted)
+        return;
+    }else{        
+        gameStarted = true;
+        setBoard();
+        startGameTimer();
+    };
+}
+const startGameTimer = ()=> {
+    gameTimer = setTimeout(()=>{
+        console.log('timer ended game')
+        endGame();
+    },40000);
+}
+const setBoard = () => {
 
-shuffle();
+    if(cards.length < 12){
+        cards.forEach(card => {
+            let dupCard = card.cloneNode(true)
+            board.appendChild(dupCard)
+            cards = document.querySelectorAll('div.card')
+        });
+    }
 
-function shuffle() {
+    cards.forEach(card => {
+        console.log('setting click')
+        card.addEventListener('click',cardClickHandler);
+    })
+    shuffle();
+}
+const shuffle = ()=> {
     let taken = [];
     cards.forEach(card => {
         let randomPos = Math.floor(Math.random() * 11);
         if(taken.includes(randomPos)){
             do{
                 if(randomPos <= 10){
-                    randomPos++
+                    randomPos++;
                 }else{
                     randomPos = 0;
                 }
@@ -31,33 +60,10 @@ function shuffle() {
             card.style.order = randomPos;
             taken.push(randomPos)
         };
-        if(randomPos === 0 || randomPos === 4 || randomPos === 8 ){
-            card.style.animationDuration = '2s';
-        }else if(randomPos === 1 || randomPos === 5|| randomPos === 9){
-            card.style.animationDuration = '4s';
-        }else{
-            card.style.animationDuration = '6s';
-        }
-        // APPLY ANIMATION BASIED ON LOCATION LEFT SIDE 0,4,8 LEFT MIDDLE 1,5,9 RIGHT MIDDLE 2,6,10 RIGHT SIDE 3,7,11
+        card.style.opacity = '1';
+        card.style.animationDuration = `.${randomPos}s`;//individual animation duration based on position
     });
 };
-
-function cardClickHandler(){
-    if(preventSelection){
-        return;
-    }else{
-        this.classList.add('flip');
-        if(!firstSelection){
-            firstSelection = this;
-        }else {
-            secondSelection = this;
-            preventSelection = true;
-            secondSelection.classList.add('flip');
-            checkForMatch();
-        };
-    };
-};
-
 const checkForMatch = () =>{
    let match = firstSelection.dataset.nick === secondSelection.dataset.nick;
     match ? matchFound() : noMatchFound();
@@ -67,10 +73,13 @@ const matchFound = () => {
     secondSelection.removeEventListener('click',cardClickHandler);
     firstSelection = null;
     secondSelection = null;
-    preventSelection = false;
     pairsFound++;
+    if(pairsFound === cards.length/2){
+        endGame();
+    }else{
+        preventSelection = false;
+    }
 }
-
 const noMatchFound = () => {
     preventSelection = true;
     setTimeout(()=>{
@@ -81,7 +90,45 @@ const noMatchFound = () => {
         preventSelection = false;
      },1500);
 };
+const endGame = () => {
+    clearTimeout(gameTimer);
+    if(pairsFound === cards.length/2){
+        alert('you won!')// ok for now but will want to animate confetti or something
+    }else{
+        alert('better luck next time!')
+    }
+    setTimeout(()=>{
+        cards.forEach((card)=>{
+            card.classList.remove('flip')
+        })
+    },2000)
+    resetBoardForNextPlay();
+};
 
-cards.forEach(card => {
-    card.addEventListener('click',cardClickHandler);
-})
+const resetBoardForNextPlay = () => {
+     pairsFound = 0;
+     gameStarted = false;
+     firstSelection = null;
+    secondSelection = null;
+}
+
+function startGameBtnClickHandler(){
+    startGame();
+}
+function cardClickHandler(){
+    if(preventSelection){
+        return;
+    }else{
+        if(!firstSelection){
+            this.classList.add('flip');
+            firstSelection = this;
+        }else {
+            secondSelection = this;
+            preventSelection = true;
+            secondSelection.classList.add('flip');
+            checkForMatch();
+        };
+    };
+};
+
+startGameBtn.addEventListener('click',startGameBtnClickHandler);
