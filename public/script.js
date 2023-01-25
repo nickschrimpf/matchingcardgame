@@ -63,9 +63,12 @@ const shuffle = ()=> {
         if(!taken.includes(randomPos)){
             card.style.order = randomPos;
             taken.push(randomPos)
+            console.log(card)
+            const newAnimationDuration = randomPos * Math.random() * .15;
+            card.style.animationDuration = `${newAnimationDuration}s`//individual animation duration based on position
+            card.style.opacity = '1';
         };
-        card.style.opacity = '1';
-        card.style.animationDuration = `.${randomPos}s`;//individual animation duration based on position
+        
     });
 };
 const checkForMatch = () =>{

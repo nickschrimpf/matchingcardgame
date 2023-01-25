@@ -29,7 +29,7 @@
                 <li>I really like to learn how to cook and when its warm enough outside use my 2 smokers!</li>
                 <li>My Wife and I Love Traveling and Hiking a little - this is Hanging Lake</li>
                 <li>My family means the world to me I always look for the next time we can get together?</li>
-                <li>My family means the world to me I always look for the next time we can get together?</li>
+                <li>I really like heading to the theater with my wife or parking it on the couch with my wife for a binge session in my down time.
             </ul>
         </div>
         <div class="actionPanel">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="scores">
                     <div>Pairs found:<br><span id="pairsFound">0</span></div>
-                    <div>Timer<br><span id="timer">0</span></div>
+                    <!-- <div>Timer<br><span id="timer">0</span></div> -->
                 </div>
                 
             </div>
@@ -55,7 +55,7 @@
                     <li id="cooking">I really like to learn how to cook and when its warm enough outside use my 2 smokers!</li>
                     <li id="hiking">My Wife and I Love Traveling and Hiking a little - this is Hanging Lake</li>
                     <li id="family">My family means the world to me I always look for the next time we can get together?</li>
-                    <li id="starwars">My family means the world to me I always look for the next time we can get together?</li>
+                    <li id="movies">I really like heading to the theater with my wife or parking it on the couch with my wife for a binge session in my down time.</li>
                 </ul>
             </div>
         </div>
@@ -65,26 +65,34 @@
                 <div class="front-face">
                     <div class="front-face-image">
                         <picture>
-                            <source media="(max-width:625px)" srcset="assets/packersGame/packersGameSmall.JPG">
-                            <source media="(min-width:625px)" src="assets/packersGame/packersGame.JPG">
-                            <img src="assets/packersGame/packersGame.JPG" alt="Born in Nebraska and grew up in Wisconsin.">
+                            <source media="(max-width:625px)" srcset="./assets/packersGame/packersGameSmall.JPG">
+                            <source media="(min-width:625px)" src="./assets/packersGame/packersGame.JPG">
+                            <img src="./assets/packersGame/packersGame.JPG" alt="Born in Nebraska and grew up in Wisconsin.">
                         </picture>
                     </div>
                 </div>
                 <picture class="back-face">
-                    <source media="(max-width:625px)" srcset="assets/CardBacks/MobileCard.svg">
-                    <source media="(min-width:625px)" src="assets/CardBacks/DesktopCard.svg">
-                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                    <source media="(max-width:625px)" srcset="./assets/cardBacks/mobileCard.svg">
+                    <source media="(min-width:625px)" src="./assets/cardBacks/desktopCard.svg">
+                    <img src="./assets/cardBacks/desktopCard.svg" alt="Get to know Nick">
                 </picture>
                 
             </div>
             <!-- FAMILY PLACE HOLDER! -->
             <div class="card" id="card" data-nick="family">
-                <img class="front-face" src="assets/Mom&Dad.JPG" alt="Family">
+                <div class="front-face">
+                    <div class="front-face-image">
+                        <picture>
+                            <source media="(max-width:625px)" srcset="./assets/family/Mom&DadSmall.jpg">
+                            <source media="(max-width:625px)" src="./assets/family/Mom&Dad.JPG">
+                            <img src="./assets/family/Mom&Dad.JPG" alt="This is my family">
+                        </picture>
+                    </div>
+                </div>
                 <picture class="back-face">
-                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
-                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
-                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                    <source media="(max-width:625px)" srcset="./assets/cardBacks/mobileCard.svg">
+                    <source media="(min-width:625px)" src="./assets/cardBacks/desktopCard.svg">
+                    <img src="./assets/cardBacks/desktopCard.svg" alt="Get to know Nick">
                 </picture>
             </div>
             <!-- VIDEOGAMES -->
@@ -92,16 +100,16 @@
                 <div class="front-face">
                     <div class="front-face-image">
                         <picture>
-                            <source media="(max-width:625px)" srcset="assets/videoGames/atariSmall.jpg">
-                            <source media="(max-width:625px)" src="assets/videoGames/atariLarge.jpg">
-                            <img src="assets/videoGames/atariLarge.jpg" alt="I had an Atari">
+                            <source media="(max-width:625px)" srcset="./assets/videoGames/atariSmall.jpg">
+                            <source media="(max-width:625px)" src="./assets/videoGames/atariLarge.jpg">
+                            <img src="./assets/videoGames/atariLarge.jpg" alt="I had an Atari">
                         </picture>
                     </div>
                 </div>
                 <picture class="back-face">
-                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
-                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
-                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                    <source media="(max-width:625px)" srcset="./assets/cardBacks/mobileCard.svg">
+                    <source media="(min-width:625px)" src="./assets/cardBacks/desktopCard.svg">
+                    <img src="./assets/cardBacks/desktopCard.svg" alt="Get to know Nick">
                 </picture>
             </div>
             <!-- COOKING -->
@@ -109,35 +117,51 @@
                 <div class="front-face">
                     <div class="front-face-image">
                         <picture>
-                            <source media="(max-width:625px)" srcset="assets/cooking/israel-albornoz-VnpJ5_m-2mQ-unsplash.jpg">
-                            <source media="(max-width:625px)" src="assets/cooking/luis-santoyo-IePWXTF3-0Y-unsplash.jpg">
-                            <img src="assets/cooking/luis-santoyo-IePWXTF3-0Y-unsplash.jpg" alt="I like to cook">
+                            <source media="(max-width:625px)" srcset="./assets/cooking/israel-albornoz-VnpJ5_m-2mQ-unsplash.jpg">
+                            <source media="(max-width:625px)" src="./assets/cooking/luis-santoyo-IePWXTF3-0Y-unsplash.jpg">
+                            <img src="./assets/cooking/luis-santoyo-IePWXTF3-0Y-unsplash.jpg" alt="I like to cook">
                         </picture>
                     </div>
                 </div>
                 <picture class="back-face">
-                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
-                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
-                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                    <source media="(max-width:625px)" srcset="./assets/cardBacks/mobileCard.svg">
+                    <source media="(min-width:625px)" src="./assets/cardBacks/desktopCard.svg">
+                    <img src="./assets/cardBacks/desktopCard.svg" alt="Get to know Nick">
                 </picture>
             </div>
 
-            <div class="card" id="card" data-nick="starwars">
-                <img class="front-face" src="assets/samuel-regan-asante-wMkaMXTJjlQ-unsplash.jpg" alt="Starwars">
-                 <picture class="back-face">
-                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
-                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
-                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+            <div class="card" id="card" data-nick="movies">
+              <div class="front-face">
+                <div class="front-face-image">
+                    <picture>
+                        <source media="(max-width:625px)" srcset="./assets/movies/samuel-regan-asante-wMkaMXTJjlQ-unsplashSmall.jpg">
+                        <source media="(max-width:625px)" src="./assets/movies/samuel-regan-asante-wMkaMXTJjlQ-unsplash.jpg">
+                        <img src="./assets/movies/samuel-regan-asante-wMkaMXTJjlQ-unsplash.jpg" alt="I love watching movies">
+                    </picture>
+                </div>
+              </div>
+                <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="./assets/cardBacks/mobileCard.svg">
+                    <source media="(min-width:625px)" src="./assets/cardBacks/desktopCard.svg">
+                    <img src="./assets/cardBacks/desktopCard.svg" alt="Get to know Nick">
                 </picture>
             </div>
 
 
             <div class="card" id="card" data-nick="hiking">
-                <img class="front-face" src="assets/hangingLake.jpeg" alt="hiking">
-                 <picture class="back-face">
-                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
-                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
-                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+               <div class="front-face">
+                    <div class="front-face-image">
+                        <picture>
+                            <source media="(max-width:625px)" srcset="./assets/hiking/hangingLakeSmall.jpeg">
+                            <source media="(max-width:625px)" src="./assets/hiking/hangingLake.jpeg">
+                            <img src="./assets/hiking/hangingLake.jpeg" alt="Hiking is awesome">
+                        </picture>
+                    </div>
+               </div>
+                <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="./assets/cardBacks/mobileCard.svg">
+                    <source media="(min-width:625px)" src="./assets/cardBacks/desktopCard.svg">
+                    <img src="./assets/cardBacks/desktopCard.svg" alt="Get to know Nick">
                 </picture>
             </div>
         </div>
