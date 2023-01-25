@@ -1,4 +1,6 @@
-<html <!DOCTYPE html>
+
+
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -12,34 +14,131 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
+        <div id="backDrop"></div>
+        <div id="gameWonPanel">
+            <div class="infoPanel">
+                <h3>You found all pairs!</h3>
+                <p>
+                    below are all some interesting facts about me that the cards represent!
+                </p>
+            </div>
+            
+            <ul>
+                <li>Was Born in Nebraska but grew up in Wisconsin - Go Pack Go</li>
+                <li>I had an Atari growing up and have loved wasting hours playing since. These days I don't have much time but still try to sneak in some time on my xbox. Alone or with my Wife! (she's the coolest)</li>
+                <li>I really like to learn how to cook and when its warm enough outside use my 2 smokers!</li>
+                <li>My Wife and I Love Traveling and Hiking a little - this is Hanging Lake</li>
+                <li>My family means the world to me I always look for the next time we can get together?</li>
+                <li>My family means the world to me I always look for the next time we can get together?</li>
+            </ul>
+        </div>
         <div class="actionPanel">
-            <h1>Get to know Nick!</h1>
+            <div id="intro">
+                <h1>Hi! I'm Nick,</h1>
+                <p>I Like to make things on the web my wife can not break!, I've made a card matching game with my personal iterests if you would like to get to know me better!</p>
+            </div>
+            <div id="scoreBoard" class="scoreBoard">
+                <div>
+                    <h3>Nick's Memory Card Game</h3>
+                </div>
+                <div class="scores">
+                    <div>Pairs found:<br><span id="pairsFound">0</span></div>
+                    <div>Timer<br><span id="timer">0</span></div>
+                </div>
+                
+            </div>
             <button id="startGameBtn">Start Game</button>
+             <div class="nickFacts">
+                <ul id="nickFactsList">
+                    <li id="wisconsin">Was Born in Nebraska but grew up in Wisconsin - Go Pack Go</li>
+                    <li id="videoGames">I had an Atari growing up and have loved wasting hours playing since. These days I don't have much time but still try to sneak in some time on my xbox. Alone or with my Wife! (she's the coolest)</li>
+                    <li id="cooking">I really like to learn how to cook and when its warm enough outside use my 2 smokers!</li>
+                    <li id="hiking">My Wife and I Love Traveling and Hiking a little - this is Hanging Lake</li>
+                    <li id="family">My family means the world to me I always look for the next time we can get together?</li>
+                    <li id="starwars">My family means the world to me I always look for the next time we can get together?</li>
+                </ul>
+            </div>
         </div>
         <div class="board" id="board">
-            <div class="card" id="card" data-nick="wife">
-                <img class="front-face" src="assets/Nick&AudPackersGame.JPG" alt="My Wife Audree">
-                <img class="back-face" src="assets/cardBack.svg" alt="Get to know Nick">
+            <!-- WISCONSIN -->
+            <div class="card" id="card" data-nick="wisconsin">
+                <div class="front-face">
+                    <div class="front-face-image">
+                        <picture>
+                            <source media="(max-width:625px)" srcset="assets/packersGame/packersGameSmall.JPG">
+                            <source media="(min-width:625px)" src="assets/packersGame/packersGame.JPG">
+                            <img src="assets/packersGame/packersGame.JPG" alt="Born in Nebraska and grew up in Wisconsin.">
+                        </picture>
+                    </div>
+                </div>
+                <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="assets/CardBacks/MobileCard.svg">
+                    <source media="(min-width:625px)" src="assets/CardBacks/DesktopCard.svg">
+                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                </picture>
+                
             </div>
+            <!-- FAMILY PLACE HOLDER! -->
             <div class="card" id="card" data-nick="family">
                 <img class="front-face" src="assets/Mom&Dad.JPG" alt="Family">
-                <img class="back-face" src="assets/cardBack.svg" alt="Get to know Nick">
+                <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
+                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
+                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                </picture>
             </div>
-            <div class="card" id="card" data-nick="angular">
-                <img class="front-face" src="assets/angular.png" alt="Angular">
-                <img class="back-face" src="assets/cardBack.svg" alt="Get to know Nick">
+            <!-- VIDEOGAMES -->
+            <div class="card" id="card" data-nick="videoGames">
+                <div class="front-face">
+                    <div class="front-face-image">
+                        <picture>
+                            <source media="(max-width:625px)" srcset="assets/videoGames/atariSmall.jpg">
+                            <source media="(max-width:625px)" src="assets/videoGames/atariLarge.jpg">
+                            <img src="assets/videoGames/atariLarge.jpg" alt="I had an Atari">
+                        </picture>
+                    </div>
+                </div>
+                <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
+                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
+                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                </picture>
             </div>
-            <div class="card" id="card" data-nick="smoking">
-                <img class="front-face" src="assets/ribs.jpeg" alt="smoking ribs">
-                <img class="back-face" src="assets/cardBack.svg" alt="Get to know Nick">
+            <!-- COOKING -->
+            <div class="card" id="card" data-nick="cooking">
+                <div class="front-face">
+                    <div class="front-face-image">
+                        <picture>
+                            <source media="(max-width:625px)" srcset="assets/cooking/israel-albornoz-VnpJ5_m-2mQ-unsplash.jpg">
+                            <source media="(max-width:625px)" src="assets/cooking/luis-santoyo-IePWXTF3-0Y-unsplash.jpg">
+                            <img src="assets/cooking/luis-santoyo-IePWXTF3-0Y-unsplash.jpg" alt="I like to cook">
+                        </picture>
+                    </div>
+                </div>
+                <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
+                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
+                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                </picture>
             </div>
+
             <div class="card" id="card" data-nick="starwars">
-                <img class="front-face" src="assets/Nick Starwars .JPG" alt="Starwars">
-                <img class="back-face" src="assets/cardBack.svg" alt="Get to know Nick">
+                <img class="front-face" src="assets/samuel-regan-asante-wMkaMXTJjlQ-unsplash.jpg" alt="Starwars">
+                 <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
+                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
+                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                </picture>
             </div>
+
+
             <div class="card" id="card" data-nick="hiking">
                 <img class="front-face" src="assets/hangingLake.jpeg" alt="hiking">
-                <img class="back-face" src="assets/cardBack.svg" alt="Get to know Nick">
+                 <picture class="back-face">
+                    <source media="(max-width:625px)" srcset="assets/cardBacks/MobileCard.svg">
+                    <source media="(min-width:625px)" src="assets/cardBacks/DesktopCard.svg">
+                    <img src="assets/cardBacks/DesktopCard.svg" alt="Get to know Nick">
+                </picture>
             </div>
         </div>
            

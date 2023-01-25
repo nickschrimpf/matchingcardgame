@@ -1,7 +1,12 @@
 let cards = document.querySelectorAll('div.card');
-const startGameBtn = document.getElementById('startGameBtn')
+const startGameBtn = document.getElementById('startGameBtn');
 const board = document.getElementById('board');
-
+const intro = document.getElementById('intro');
+const nickFactsList = document.getElementById('nickFactsList');
+const scoreBoard = document.getElementById('scoreBoard');
+const pairsFoundEl = document.getElementById('pairsFound');
+const gameWonPanel =  document.getElementById('gameWonPanel');
+const backDrop = document.getElementById('backDrop');
 
 let firstSelection
 let secondSelection
@@ -12,22 +17,23 @@ let gameTimer
 
 const startGame = () => {
     if(gameStarted){
-        console.log(gameStarted)
         return;
     }else{        
         gameStarted = true;
         setBoard();
         startGameTimer();
+        scoreBoard.style.display = 'flex'
+        intro.style.display = 'none';
+        startGameBtn.style.display = 'none';
     };
-}
+};
 const startGameTimer = ()=> {
-    gameTimer = setTimeout(()=>{
-        console.log('timer ended game')
-        endGame();
-    },40000);
-}
+    // gameTimer = setTimeout(()=>{
+    //     console.log('timer ended game')
+    //     endGame();
+    // },40000);
+};
 const setBoard = () => {
-
     if(cards.length < 12){
         cards.forEach(card => {
             let dupCard = card.cloneNode(true)
@@ -35,13 +41,11 @@ const setBoard = () => {
             cards = document.querySelectorAll('div.card')
         });
     }
-
     cards.forEach(card => {
-        console.log('setting click')
         card.addEventListener('click',cardClickHandler);
     })
     shuffle();
-}
+};
 const shuffle = ()=> {
     let taken = [];
     cards.forEach(card => {
@@ -65,21 +69,31 @@ const shuffle = ()=> {
     });
 };
 const checkForMatch = () =>{
-   let match = firstSelection.dataset.nick === secondSelection.dataset.nick;
+   let match = firstSelection.dataset.nick === secondSelection.dataset.nick && firstSelection.style.order !== secondSelection.style.order;
     match ? matchFound() : noMatchFound();
-} 
+}; 
 const matchFound = () => {
     firstSelection.removeEventListener('click',cardClickHandler);
     secondSelection.removeEventListener('click',cardClickHandler);
+    let pairValue = firstSelection.dataset.nick;
+    showNickFact(pairValue);
     firstSelection = null;
     secondSelection = null;
     pairsFound++;
+    pairsFoundEl.innerHTML = pairsFound
     if(pairsFound === cards.length/2){
         endGame();
     }else{
         preventSelection = false;
-    }
-}
+    };
+};
+const showNickFact = (fact) => {
+    const factLi = document.getElementById(fact);
+    factLi.style.display = 'flex';
+    setTimeout(()=>{
+        factLi.style.display = 'none';
+    },2600);
+};
 const noMatchFound = () => {
     preventSelection = true;
     setTimeout(()=>{
@@ -88,30 +102,32 @@ const noMatchFound = () => {
         firstSelection = null;
         secondSelection = null;
         preventSelection = false;
-     },1500);
+        },1500);
 };
 const endGame = () => {
     clearTimeout(gameTimer);
     if(pairsFound === cards.length/2){
-        alert('you won!')// ok for now but will want to animate confetti or something
+        gameWonPanel.style.display = 'flex';
+        backDrop.style.display = 'flex';
     }else{
         alert('better luck next time!')
-    }
+    };
     setTimeout(()=>{
         cards.forEach((card)=>{
-            card.classList.remove('flip')
-        })
-    },2000)
-    resetBoardForNextPlay();
+            card.classList.remove('flip');
+            card.style.opacity = '0';
+        });
+    },1600);
 };
-
 const resetBoardForNextPlay = () => {
-     pairsFound = 0;
-     gameStarted = false;
-     firstSelection = null;
+    clearTimeout(gameTimer)
+    pairsFound = 0;
+    gameStarted = false;
+    firstSelection = null;
     secondSelection = null;
-}
-
+    startGameBtn.style.display = 'flex';
+    intro.style.display = 'flex';
+};
 function startGameBtnClickHandler(){
     startGame();
 }
@@ -122,12 +138,14 @@ function cardClickHandler(){
         if(!firstSelection){
             this.classList.add('flip');
             firstSelection = this;
-        }else {
+        }else if(this.style.order != firstSelection.style.order){
             secondSelection = this;
             preventSelection = true;
             secondSelection.classList.add('flip');
             checkForMatch();
-        };
+        }else{
+            return;
+        }
     };
 };
 
