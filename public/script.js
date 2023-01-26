@@ -8,12 +8,14 @@ const pairsFoundEl = document.getElementById('pairsFound');
 const gameWonPanel =  document.getElementById('gameWonPanel');
 const backDrop = document.getElementById('backDrop');
 
+
 let firstSelection
 let secondSelection
 let preventSelection = false;
 let pairsFound = 0;
 let gameStarted = false;
 let gameTimer
+let factTimer
 
 const startGame = () => {
     if(gameStarted){
@@ -63,7 +65,6 @@ const shuffle = ()=> {
         if(!taken.includes(randomPos)){
             card.style.order = randomPos;
             taken.push(randomPos)
-            console.log(card)
             const newAnimationDuration = randomPos * Math.random() * .15;
             card.style.animationDuration = `${newAnimationDuration}s`//individual animation duration based on position
             card.style.opacity = '1';
@@ -91,20 +92,29 @@ const matchFound = () => {
     };
 };
 const showNickFact = (fact) => {
+    let currentFacts = nickFactsList.children
+    if(currentFacts.length > 0){
+        clearTimeout(factTimer);
+        for(const fact of nickFactsList.children){
+            fact.style.display = 'none';
+        };
+    };
     const factLi = document.getElementById(fact);
     factLi.style.display = 'flex';
-    setTimeout(()=>{
+    scoreBoard.style.display = 'none';
+    factTimer = setTimeout(()=>{
         factLi.style.display = 'none';
-    },2600);
+        scoreBoard.style.display = 'flex';
+    },5600);
 };
 const noMatchFound = () => {
     preventSelection = true;
     setTimeout(()=>{
-        secondSelection.classList.remove('flip');
-        firstSelection.classList.remove('flip');
-        firstSelection = null;
-        secondSelection = null;
-        preventSelection = false;
+            secondSelection.classList.remove('flip');
+            firstSelection.classList.remove('flip');
+            firstSelection = null;
+            secondSelection = null;
+            preventSelection = false;
         },1500);
 };
 const endGame = () => {
